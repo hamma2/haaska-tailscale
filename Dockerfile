@@ -11,8 +11,8 @@ RUN chmod 755 /usr/local/bin/aws-lambda-rie
 COPY ./custom_entrypoint /var/runtime/custom_entrypoint
 COPY --from=builder /app/ /var/task
 # Copy Tailscale binaries from the tailscale image on Docker Hub.
-COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /var/runtime/tailscaled
-COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscale /var/runtime/tailscale
+COPY --from=docker.io/tailscale/tailscale:latest /usr/local/bin/tailscaled /var/runtime/tailscaled
+COPY --from=docker.io/tailscale/tailscale:latest /usr/local/bin/tailscale /var/runtime/tailscale
 RUN mkdir -p /var/run && ln -s /tmp/tailscale /var/run/tailscale && \
     mkdir -p /var/cache && ln -s /tmp/tailscale /var/cache/tailscale && \
     mkdir -p /var/lib && ln -s /tmp/tailscale /var/lib/tailscale && \
